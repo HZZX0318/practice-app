@@ -1,15 +1,8 @@
-import { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import Banner from './components/Banner';
-import CourseList from './components/CourseList';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
+import TermPage from './components/TermPage';
+import Banner from './components/Banner';
 
-
-// Define the Main component for fetching and rendering the data
 const Main = () => {
   const [schedule, isLoading, error] = useJsonQuery('https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php');
 
@@ -20,15 +13,13 @@ const Main = () => {
   return (
     <div>
       <Banner title={schedule.title} />
-      <CourseList courses={schedule.courses} />
+      <TermPage courses={schedule.courses} />
     </div>
   );
 };
 
-// Create a QueryClient instance for React Query
 const queryClient = new QueryClient();
 
-// Wrap the Main component in the QueryClientProvider
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <div className="container">
