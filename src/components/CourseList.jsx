@@ -1,13 +1,17 @@
+import './CourseList.css';
+
 const CourseList = ({ courses }) => {
     return (
-      <div>
+      <section className="course-list-container">
         {Object.entries(courses).map(([key, course]) => (
-            <li key={key}>
-              <strong>{course.term} {course.number}:</strong> {course.title} <br />
-            </li>
+            <div key={key} className="course-card">
+              <h3>{course.term} CS {course.number}</h3>
+              <p>{course.title}</p>
+              <p><strong>Meets:</strong> {course.meets}</p>
+            </div>
           ))}
-      </div>
+      </section>
     );
 };
-  
+
 export default CourseList;  
